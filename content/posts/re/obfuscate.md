@@ -1,6 +1,7 @@
 ---
 title: "common obfuscation techniques and deobfuscation"
 date: 2021-05-27
+draft: true
 ---
 
 Bogus Control Flow
