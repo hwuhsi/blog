@@ -1,0 +1,27 @@
+<head>
+  <meta charset="utf-8" />
+  <link rel="shortcut icon" href="/favicon/favicon.ico" type="image/x-icon" />
+  {{- /* prismjs.css */ -}} {{ $syntaxPath := "prism/prism.css" }}
+  <link href="{{ $syntaxPath | absURL }}" rel="stylesheet" />
+
+  {{ $style := resources.Get "sass/style.scss" | resources.ToCSS |
+  resources.Minify | resources.Fingerprint }}
+  <link rel="stylesheet" href="{{ $style.Permalink }}" />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-theme-classic"
+  />
+  <title>{{ block "title" . }} {{ .Site.Title }} {{ end }}</title>
+
+  <script
+    src="{{ .Site.Params.fontAwesomeKits }}"
+    crossorigin="anonymous"
+  ></script>
+
+  {{ $ts := resources.Get "js/darkmode.ts" | js.Build }}
+  <script type="text/javascript" src="{{ $ts.RelPermalink }}"></script>
+  {{ $ts := resources.Get "js/toc.ts" | js.Build }}
+  <script type="text/javascript" src="{{ $ts.RelPermalink }}"></script>
+
+  {{ partial "katex.html" . }}
+</head>

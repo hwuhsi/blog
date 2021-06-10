@@ -1,0 +1,21 @@
+{{ define "title" }}
+blog of {{ .Title }}
+{{ end }}
+{{ define "main" }}
+<main aria-role="main">
+  <header class="homepage-header">
+    <h1>{{.Title}}</h1>
+    {{ with .Params.subtitle }}
+    <span class="subtitle">{{.}}</span>
+    {{ end }}
+  </header>
+  <div class="app-list">
+    {{ partial "postlist.html" .Pages }}
+    <div class="tags">
+      {{ partial "taxo/categories.html" . }}
+      {{ partial "taxo/tags.html" . }}
+    </div>
+  </div>
+  
+</main>
+{{ end }}

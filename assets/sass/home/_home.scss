@@ -1,0 +1,26 @@
+.homepage-header {
+  //background-color:
+
+  background-size: cover;
+  height: 75vh;
+  display: grid;
+  grid-template: 1fr 6rem 3rem 2rem 1fr / 1fr;
+  .wrapper {
+    text-align: center;
+  }
+
+  .home-title {
+    grid-row: 2 / 3;
+    font-size: 3rem;
+  }
+
+  .home-social {
+    grid-row: 3 / 4;
+    font-size: 2rem;
+  }
+
+  .home-subtitle {
+    grid-row: 4 / 5;
+    font-size: 1.5rem;
+  }
+}

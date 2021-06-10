@@ -1,0 +1,33 @@
+{{ define "title" }} {{ .Title }} &ndash; {{ .Site.Title }} {{ end }} {{ define
+"main" }}
+<div class="app">
+  <div class="blog-post">
+    <div class="blog-meta">
+      <h1 class="blog-title">{{ .Title }}</h1>
+      {{ with (.GetTerms "tags") }}
+      <div class="tag-list">
+        <i class="fas fa-tags"></i>
+        {{ range . }}
+        <a href="{{ .Permalink }}">{{ .LinkTitle }}</a>
+        {{ end }}
+      </div>
+      {{ end }}
+      <span>
+        <i class="far fa-calendar-alt"></i>
+        {{ .Date.Format "January 2, 2006" }}
+      </span>
+    </div>
+    {{ .Content }}
+    <div class="blog-footer">
+      <a href="{{with .Prev}}{{.Permalink}}{{end}}"
+        ><i class="fas fa-arrow-left"></i>Prev</a
+      >
+      <a href="{{with .Next}}{{.Permalink}}{{end}}"
+        >Next<i class="fas fa-arrow-right"></i
+      ></a>
+    </div>
+  </div>
+  {{.TableOfContents}}
+</div>
+
+{{ end }}

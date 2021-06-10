@@ -1,0 +1,13 @@
+@import "base/variable";
+@import "base/base";
+
+@import "home/home";
+
+@import "components/footer";
+@import "components/page-list";
+@import "components/navbar";
+
+@import "post/post";
+@import "post/container";
+
+//@use 'base/variable' as *;

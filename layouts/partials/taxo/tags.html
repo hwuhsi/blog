@@ -1,0 +1,11 @@
+<h2>tags</h2>
+<div class="tags-list">
+    {{ range $key, $value := .Site.Taxonomies.tags }}
+    <div>
+        <a href="/tags/{{ $key | urlize  }}">
+            {{- $key | humanize -}}
+            <span>{{- len $value -}}</span>
+        </a>
+    </div>
+    {{ end }}
+</div>

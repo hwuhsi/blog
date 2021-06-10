@@ -1,0 +1,113 @@
+.blog-post {
+  background-color: var(--bg-color2);
+  color: var(--text-color);
+  grid-area: content;
+  padding: 2rem;
+  border-radius: 6px;
+  //box-shadow: 20px 20px 50px #d2e4e3, -30px -30px 60px #d2e2e2;
+  h1 {
+    text-align: center;
+  }
+
+  h2 {
+    &::before {
+      content: "\f0c6 ";
+      font-family: FontAwesome;
+    }
+  }
+  img {
+    height: auto;
+    max-width: 100%;
+  }
+  a {
+    color: var(--link-color);
+    &::before {
+      content: "\f35d ";
+      font-family: FontAwesome;
+    }
+  }
+  p > code {
+    font-family: $code-font-family;
+    font-size: 0.9rem;
+    background-color: var(--bg-color5);
+    border-radius: 6px;
+    padding: 4px 4px 4px 4px;
+    margin: 0px 6px 0px 6px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  }
+  blockquote {
+    background: var(--bg-color3);
+    //border-left: 10px solid #ccc;
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+    quotes: "\201C""\201D""\2018""\2019";
+
+    &::before {
+      color: var(--text-color2);
+      content: open-quote;
+      font-size: 4em;
+      line-height: 0.1em;
+      margin-right: 0.25em;
+      vertical-align: -0.4em;
+    }
+    p {
+      display: inline;
+    }
+  }
+  table {
+    margin: auto;
+    border-collapse: collapse;
+
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+
+    thead tr {
+      background-color: var(--bg-color1);
+      color: var(--text-color1);
+      text-align: left;
+    }
+    th,
+    td {
+      padding: 12px 15px;
+    }
+
+    tbody {
+      tr {
+        border-bottom: 1px solid #dddddd;
+        &:nth-of-type(even) {
+          background-color: var(--bg-color3);
+        }
+        &:last-of-type {
+          border-bottom: 2px solid #dfe9e7;
+        }
+      }
+    }
+  }
+
+  .blog-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2em, 0;
+    margin-top: 3rem;
+    a {
+      &::before {
+        display: none;
+      }
+    }
+  }
+}
+
+.tag-list {
+  text-align: center;
+
+  a {
+    text-decoration: none;
+    background-color: var(--background-color-tertiary);
+    padding: 4px;
+    border-radius: 10px;
+    color: inherit;
+    &::before {
+      display: none;
+    }
+  }
+}

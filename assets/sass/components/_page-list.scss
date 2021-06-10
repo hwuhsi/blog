@@ -1,0 +1,64 @@
+.app-list {
+  display: grid;
+  grid-template-columns: 1fr 700px 10rem 1fr 10rem;
+  grid-template-areas: ". post tag . .";
+  @media (max-width: $breakpoint-tablet) {
+    grid-template-columns: 6px 1fr 6px;
+    grid-template-areas: "no1 post no2";
+  }
+
+  .card-list {
+    grid-area: post;
+  }
+  .tags {
+    grid-area: tag;
+    position: sticky;
+    align-self: start;
+    top: 12rem;
+    @media (max-width: $breakpoint-tablet) {
+      display: none;
+    }
+    div {
+      margin-bottom: 4px;
+      &.tags-list {
+        display: flex;
+        justify-content: left;
+        flex-wrap: wrap;
+        a {
+          border-radius: 8px;
+          text-decoration: none;
+          color: inherit;
+          background-color: var(--bg-color2);
+          letter-spacing: 2px;
+          margin: 8px;
+          span {
+            border-radius: 10px;
+            text-decoration: none;
+            color: inherit;
+            background-color: rgb(138, 141, 141);
+            padding-left: 4px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.card {
+  background-color: var(--bg-color2);
+  padding: 2rem;
+  border-radius: 6px;
+  margin: 2rem;
+  h2 {
+    text-align: center;
+  }
+  .tag-list {
+    text-align: center;
+  }
+  .post-meta {
+    margin-top: 1rem;
+  }
+  footer {
+    margin-top: 2rem;
+  }
+}

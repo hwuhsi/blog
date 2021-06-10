@@ -1,0 +1,46 @@
+.app {
+  display: grid;
+  grid-template-rows: 12rem 1fr;
+  grid-template-columns: 1fr 60rem 0.4fr 0.8fr;
+  grid-template-areas:
+    ". . . ."
+    ". content toc .";
+}
+
+#TableOfContents {
+  grid-area: toc;
+  position: sticky;
+  align-self: start;
+  top: 10rem;
+  //box-shadow: 6px 6px 14px #cacece;
+  //border-radius: 16px;
+  background-color: var(--bg-color1);
+  padding-left: 0;
+  border-left: 1px solid var(--text-color2);
+  li.active {
+    > a {
+      color: inherit;
+      font-weight: 500;
+    }
+  }
+  ul,
+  ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    margin-left: 1rem;
+  }
+  a {
+    text-decoration: none;
+    display: block;
+    padding: 0.125rem 0;
+    color: inherit;
+    transition: all 50ms ease-in-out;
+    &:hover,
+    &:focus {
+      color: var(--text-color2);
+    }
+  }
+}

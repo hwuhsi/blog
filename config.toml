@@ -1,0 +1,28 @@
+baseURL = "https://blog.hwuhsi.com/"
+
+languageCode = "en-us"
+title = "hwuhsi"
+
+[Params]
+fontAwesomeKits = "https://kit.fontawesome.com/533f1354d0.js"
+
+[taxonomies]
+tag = "tags"
+category = "categories"
+
+[markup]
+  [markup.highlight]
+    codeFences = false
+
+[outputFormats.Algolia]
+baseName = "algolia"
+isPlainText = true
+mediaType = "application/json"
+notAlternative = true
+
+[params.algolia]
+vars = ["title", "summary", "date", "publishdate", "expirydate", "permalink"]
+params = ["categories", "tags"]
+
+[outputs]
+home = ["HTML", "RSS", "Algolia"]

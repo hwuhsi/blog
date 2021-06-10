@@ -1,0 +1,1 @@
+winsat disk -drive d
