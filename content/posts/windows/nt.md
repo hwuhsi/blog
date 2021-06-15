@@ -1,34 +1,93 @@
+---
+title: "Windows Kernel Programming"
+date: 2021-06-14
+update: 2021-06-14
+categories: windows
+draft: false
+---
 
 
-内核函数
 
-| Prefix |                           Meaning                            |
-| :----: | :----------------------------------------------------------: |
-|   Cc   | File system cache[[2\]](https://en.wikipedia.org/wiki/Ntoskrnl.exe#cite_note-3) |
-|   Cm   | Configuration Manager, the kernel mode side of [Windows Registry](https://en.wikipedia.org/wiki/Windows_Registry) |
-|  Csr   | functions used to communicate with the Win32 subsystem process, csrss.exe (csrss stands for client/server runtime sub-system) |
-|  Dbg   |   debugging aid functions, such as a software break point    |
-|   Ex   |     Windows executive, an "outer layer" of Ntoskrnl.exe      |
-|  Exp   | Windows executive private: Routines within the executive layer that are not exported for call outside of the executive (p = private) |
-| FsRtl  | file system runtime library[[3\]](https://en.wikipedia.org/wiki/Ntoskrnl.exe#cite_note-4) |
-|   Io   | I/O manager[[4\]](https://en.wikipedia.org/wiki/Ntoskrnl.exe#cite_note-5) |
-|   Ke   | core kernel routines[[5\]](https://en.wikipedia.org/wiki/Ntoskrnl.exe#cite_note-6) |
-|   Ki   | routines in the kernel that are not exported for call from outside the kernel (i = internal) |
-|   Ks   |                       kernel streaming                       |
-|  Ldr   |            loader functions for PE file handling             |
-|  Lpc   | [Local Procedure Call](https://en.wikipedia.org/wiki/Local_Inter-Process_Communication), an internal, undocumented, interprocess or user/kernel message passing mechanism |
-|  Lsa   |                   Local Security Authority                   |
-|   Mi   | memory management routines not exported for call outside the memory manager (i = internal) |
-|   Mm   |                      memory management                       |
-|  Nls   |   Nls for Native Language Support (similar to code pages).   |
-|   Ob   | [Object Manager](https://en.wikipedia.org/wiki/Object_Manager) |
-|  Pfx   |                   Pfx for prefix handling.                   |
-|   Po   | Plug-and-play and power management[[6\]](https://en.wikipedia.org/wiki/Ntoskrnl.exe#cite_note-7) |
-|   Ps   |                Process and thread management                 |
-|  Rtl   | Run-Time Library. This includes many utility functions that can be used by native applications, yet don't directly involve kernel support |
-|  Rtlp  | Run-Time Library internal routines that are not exported form the kernel. |
-|   Se   |                           security                           |
-|   Vf   |                       Driver verifier                        |
-|   Vi   | Driver verifier routines not exported for call outside the driver verifier |
-|   Zw   | Nt or Zw are system calls declared in ntdll.dll and ntoskrnl.exe. When called from ntdll.dll in user mode, these groups are almost exactly the same; they trap into kernel mode and call the equivalent function in ntoskrnl.exe via the SSDT. When calling the functions directly in ntoskrnl.exe (only possible in kernel mode), the Zw variants ensure kernel mode, whereas the Nt variants do not.[[7\]](https://en.wikipedia.org/wiki/Ntoskrnl.exe#cite_note-8) |
+## Prepare
+
+before we begin to write some kernel code, first let's prepare for a kernel debugging environment.
+
+I will use `vagrant` to automatically configure the virtual machine.
+
+(reference: https://secret.club/2020/04/10/kernel_debugging_in_seconds.html, nice blog post by secret club)
+
+first you must have vagrant installed. You can go to their website and download directly, or use `scoop`
+
+```powershell
+scoop install vagrant
+```
+
+then, if you are running vmware, you will also need a vagrant plugin to correctly work. (see page https://www.vagrantup.com/docs/providers/vmware/installation)
+
+you can also download `Vagrant VMware Utility` from scoop using my scoop repository (https://github.com/hwuhsi/scoop),
+
+```
+scoop install vagrant-vmware
+```
+
+(need to run `vagrant-vmware-utility service install ` and `vagrant-vmware-utility certificate generate` manually)
+
+ next, run
+
+```pow
+vagrant plugin install vagrant-vmware-desktop
+```
+
+then everything is prepared.
+
+## Vagrant Up
+
+it's time to write our `Vagrantfile`
+
+choose an windows virtual machine here (https://app.vagrantup.com/boxes/search)
+
+I would use `StefanScherer/windows_10`
+
+in your workspace root directory,  create the `Vagrantfile`
+
+```Vagrantfile
+Vagrant.configure("2") do |config|
+  config.vm.guest = :windows		# tell Vagrant this is a Windows-based guest
+  config.vm.communicator = "winrm"	# use winrm for management instead of ssh
+
+  config.winrm.password = "vagrant"	# the credentials specified during OS install
+  config.winrm.username = "vagrant"	
+  config.vm.provider "vmware_desktop" do |v|
+    v.gui = true
+  end
+  config.vm.define "win10" do |win10|
+    win10.vm.box = "StefanScherer/windows_10"	# edit this to be the name of the box you created
+    win10.vm.provision "shell", path: "guest/kdbg.bat"			# this batch file will be run inside the VM
+    
+    win10.vm.network :forwarded_port, guest: 49152, host: 49152		# expose kernel debugging port to host
+  end
+end
+```
+
+`gui` is not required, but i will use some graphic appications later.
+
+then, create a folder named `guest`, and create a file `kdbg.bat`
+
+```bash
+bcdedit /debug on
+bcdedit /dbgsettings net hostip:192.168.225.1 port:49152 key:1.1.1.1
+shutdown /r /t 0
+```
+
+here, the hostip address is the address of host machine under `vmnet8`, if you do not change the default network settings.
+
+just run `vagrant up`
+
+then, run your `windbg`
+
+```power
+"C:\Program Files (x86)\Windows Kits\10\Debuggers\x64\windbg.exe" -k net:port=49152,key=1.1.1.1
+```
+
+(of course the new `windbg preview` can be used as well)
 

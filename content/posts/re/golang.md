@@ -1,6 +1,7 @@
 ---
 title: "golang binary analysis"
 date: 2021-05-21
+draft: true
 ---
 
 https://github.com/golang/go/issues/40724
@@ -23,13 +24,7 @@ https://dr-knz.net/go-calling-convention-x86-64.html#id19
 
 the calling convention of `go` programming language is based on **stack**.
 
-```mermaid
-graph TD;
-    A-->B;
-    A-->C;
-    B-->D;
-    C-->D;
-```
+
 
 
 
@@ -56,12 +51,6 @@ func main() {
 ```
 
 what will stack be like?
-
-
-
-![stack](https://i.loli.net/2021/06/10/nkVXdq8ez5fiUw2.png)
-
-
 
 
 

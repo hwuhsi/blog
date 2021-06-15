@@ -7,7 +7,7 @@ body {
   --code-color: #eee;
 
   --text-color1: #000;
-  --text-color2: #333;
+  --text-color2: rgb(167, 161, 161);
   --link-color: #5e81ac;
   --bg-color1: #cbd5df;
   --bg-color2: #e2e8f0;
@@ -21,7 +21,7 @@ body[data-theme="dark"] {
   --code-color: rgb(90, 84, 84);
 
   --text-color1: #eceff4;
-  --text-color2: #e5e9f0;
+  --text-color2: #9cbcf0;
 
   --bg-color1: #1a202c;
   --bg-color2: #2d3848;
@@ -34,7 +34,13 @@ body {
   margin: 0;
   background-color: var(--bg-color1);
   color: var(--text-color1);
-  font-family: $global-font-family;
+  font-family: "Times New Roman", Times, serif;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
 * {
@@ -67,5 +73,9 @@ body::-webkit-scrollbar-thumb {
 
 code[class*="language-"],
 pre[class*="language-"] {
+  font-family: "Cascadia Code";
+}
+
+code {
   font-family: "Cascadia Code";
 }

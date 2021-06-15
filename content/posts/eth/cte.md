@@ -12,7 +12,7 @@ tags: "blockchain"
 
 ### Guess the new number
 
-题目源码
+
 
 ```solidity
 pragma solidity ^0.4.21;
@@ -37,9 +37,7 @@ contract GuessTheNewNumberChallenge {
 }
 ```
 
-题目中的answer这次不会保存在区块中，而是直接保存在evm当中，不仅如此，题目中的now和block number也是无法提前预知的。
 
-这里有一个比较简单的办法即使用一个中继合约。
 
 ```solidity
 contract GuessTheNewNumberSolver {

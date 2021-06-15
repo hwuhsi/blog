@@ -1,11 +1,8 @@
 <h2>categories</h2>
 <div class="tags-list">
-    {{ range $key, $value := .Site.Taxonomies.categories }}
-    <div>
-        <a href="/categories/{{ $key | urlize  }}">
-            {{- $key | humanize -}}
-            <span>{{- len $value -}}</span>
-        </a>
-    </div>
-    {{ end }}
+  {{ range $key, $value := .Site.Taxonomies.categories }}
+  <div>
+    <a href="/categories/{{ $key | urlize  }}"> {{- $key | humanize -}} </a>
+  </div>
+  {{ end }}
 </div>

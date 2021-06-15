@@ -1,7 +1,7 @@
 .app-list {
   display: grid;
-  grid-template-columns: 1fr 700px 10rem 1fr 10rem;
-  grid-template-areas: ". post tag . .";
+  grid-template-columns: 1fr 700px 10rem 10rem 1fr;
+  grid-template-areas: ". post . tag . ";
   @media (max-width: $breakpoint-tablet) {
     grid-template-columns: 6px 1fr 6px;
     grid-template-areas: "no1 post no2";
@@ -24,19 +24,15 @@
         display: flex;
         justify-content: left;
         flex-wrap: wrap;
-        a {
-          border-radius: 8px;
-          text-decoration: none;
-          color: inherit;
-          background-color: var(--bg-color2);
-          letter-spacing: 2px;
-          margin: 8px;
-          span {
-            border-radius: 10px;
+        div {
+          margin: 6px;
+          a {
+            border-radius: 8px;
             text-decoration: none;
             color: inherit;
-            background-color: rgb(138, 141, 141);
-            padding-left: 4px;
+            padding: 3px;
+            background-color: var(--bg-color2);
+            margin: 8px;
           }
         }
       }
