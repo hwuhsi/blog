@@ -1,3 +1,5 @@
+
+/*
 import {
   autocomplete,
   AutocompleteComponents,
@@ -76,3 +78,4 @@ function ProductItem({ hit, components }: SearchComponent) {
     </div>
   </div>`;
 }
+*/
