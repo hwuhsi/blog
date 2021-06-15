@@ -3,6 +3,10 @@
   src: url("/fonts/BloggerSans.ttf") format("truetype");
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   --code-color: #eee;
 

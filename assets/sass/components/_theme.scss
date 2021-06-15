@@ -1,0 +1,23 @@
+#theme {
+  font-family: FontAwesome;
+  background-color: inherit;
+  color: inherit;
+  border: none;
+  font-size: large;
+}
+
+body[data-theme="dark"] {
+  #theme {
+    &::before {
+      content: "\f185";
+    }
+  }
+}
+
+body[data-theme="light"] {
+  #theme {
+    &::before {
+      content: "\f186";
+    }
+  }
+}
