@@ -16,8 +16,6 @@
       crossorigin="anonymous"
     ></script>
 
-    {{ $ts := resources.Get "js/darkmode.ts" | js.Build }}
-    <script type="text/javascript" src="{{ $ts.RelPermalink }}"></script>
     {{ $ts := resources.Get "js/toc.ts" | js.Build }}
     <script type="text/javascript" src="{{ $ts.RelPermalink }}"></script>
     <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js"></script>
@@ -25,6 +23,8 @@
   </head>
 
   <body data-theme="dark">
+    {{ $ts := resources.Get "js/darkmode.ts" | js.Build }}
+    <script type="text/javascript" src="{{ $ts.RelPermalink }}"></script>
     <header class="blog-header">
       <div>
         <a href="/" class="home">Home</a>
