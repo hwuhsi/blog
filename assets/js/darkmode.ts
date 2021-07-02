@@ -1,9 +1,9 @@
-window.addEventListener("DOMContentLoaded", () => {
-  const config = localStorage.getItem("theme");
+const config = localStorage.getItem("theme");
 
+window.addEventListener("DOMContentLoaded", () => {
   const body = document.querySelector("body");
 
-  body.dataset.theme = config === "light" ? "light" : "dark";
+  body.dataset.theme = config;
 
   const theme = document.querySelector("#theme") as HTMLButtonElement;
   theme.onclick = () => {
