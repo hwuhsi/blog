@@ -4,27 +4,20 @@
   "description": "personal site of hwuhsi",
   "main": "index.js",
   "scripts": {
-    "algolia": "atomic-algolia",
     "start:dev": "hugo server -F -D",
-    "build:prod": "hugo --gc --minify && npm run algolia"
+    "build:prod": "hugo --gc --minify"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hwuhsi/blog.git"
   },
-  "author": "",
+  "author": "hwuhsi",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/hwuhsi/blog/issues"
   },
   "homepage": "https://github.com/hwuhsi/blog#readme",
   "dependencies": {
-    "@algolia/autocomplete-js": "^1.0.1",
-    "algoliasearch": "^4.9.1",
-    "htm": "^3.0.4",
     "typed.js": "^2.0.12"
-  },
-  "devDependencies": {
-    "atomic-algolia": "^0.3.19"
   }
 }

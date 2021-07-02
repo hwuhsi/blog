@@ -7,8 +7,6 @@ categories: re
 draft: false
 ---
 
-ABI即`application binary interface`，涵盖了一些二进制可执行文件格式，以及调用规定的信息。
-
 ## 64bit 
 
 amd64架构的abi有msvc abi和system v abi(https://uclibc.org/docs/psABI-x86_64.pdf)

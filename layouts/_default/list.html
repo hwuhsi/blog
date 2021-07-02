@@ -1,21 +1,25 @@
-{{ define "title" }}
-blog of {{ .Title }}
-{{ end }}
-{{ define "main" }}
+{{ define "title" }} blog of {{ .Title }} {{ end }} {{ define "main" }}
 <main aria-role="main">
   <header class="homepage-header">
-    <h1>{{.Title}}</h1>
-    {{ with .Params.subtitle }}
-    <span class="subtitle">{{.}}</span>
-    {{ end }}
+    <h1 class="home-title wrapper">{{.Title}}</h1>
+    <div class="home-social wrapper">
+      <a href="https://github.com/hwuhsi" class="no-link-style" target="_blank"
+        ><i class="fab fa-github"></i
+      ></a>
+    </div>
+    <div class="home-subtitle wrapper">
+      <span class="typed"></span>
+    </div>
   </header>
+
   <div class="app-list">
     {{ partial "postlist.html" .Pages }}
     <div class="tags">
-      {{ partial "taxo/categories.html" . }}
-      {{ partial "taxo/tags.html" . }}
+      {{ partial "taxo/categories.html" . }} {{ partial "taxo/tags.html" . }}
     </div>
   </div>
-  
+
+  {{ $ts := resources.Get "js/typed.ts" | js.Build }}
+  <script type="text/javascript" src="{{ $ts.RelPermalink }}"></script>
 </main>
 {{ end }}

@@ -1,5 +1,5 @@
 <div class="card-list">
-  {{ range first 10 . }}
+  {{ range where . "Params.publish" true }}
   <article class="card">
     <header>
       <h2>

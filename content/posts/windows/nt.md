@@ -1,9 +1,10 @@
 ---
-title: "Windows Kernel Programming"
+title: "Windows Kernel Programming setup"
 date: 2021-06-14
 update: 2021-06-14
 categories: windows
-draft: false
+publish: true
+series: "windows"
 ---
 
 
@@ -11,6 +12,12 @@ draft: false
 ## Prepare
 
 before we begin to write some kernel code, first let's prepare for a kernel debugging environment.
+
+Make sure 
+
+
+
+
 
 I will use `vagrant` to automatically configure the virtual machine.
 
@@ -90,4 +97,34 @@ then, run your `windbg`
 ```
 
 (of course the new `windbg preview` can be used as well)
+
+## Load Driver
+
+run
+
+```powershell
+bcdedit /set nointegritychecks on; bcdedit /set testsigning on
+```
+
+to disable the driver integrity checks
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
